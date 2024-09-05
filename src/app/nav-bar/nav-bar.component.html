@@ -1,0 +1,7 @@
+
+<div class="navBarGrid">
+@for (route of routes; track route)
+{
+        <a [routerLink]='route.path' class='navBarCell'>{{route.title}}</a>
+}
+</div>
