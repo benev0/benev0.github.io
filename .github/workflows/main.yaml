@@ -5,20 +5,23 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   build:
+    concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     steps:
       - name: checkout src
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
       - name: build angular
-        working-directory: .
         run: npm install && npm run build:prod
 
       - name: publish site
@@ -26,4 +29,4 @@ jobs:
         with:
           folder: dist/browser
           branch: live
-          token: ${{ secrets.PUBLISH_TOKEN }}
+          token: ${{ GITHUB_TOKEN }}
