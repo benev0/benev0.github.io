@@ -1,0 +1,28 @@
+name: Build and Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubunto-latest
+      - name: checkout src
+        uses: actions/checkout@v2
+
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: build angular
+        working-directory: .
+        run: npm install && npm run build:prod
+
+      - name: publish site
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist/browser
+          branch: live
+          token: ${{ secrets.PUBLISH_TOKEN }}
