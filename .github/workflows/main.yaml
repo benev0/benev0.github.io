@@ -29,4 +29,3 @@ jobs:
         with:
           folder: dist/browser
           branch: live
-          token: ${{ GITHUB_TOKEN }}
