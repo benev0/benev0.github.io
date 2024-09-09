@@ -1,8 +1,14 @@
 <div class='blog'>
-        <article>
-                <p>
-                        welcome to my github blog!
-                </p>
-                <img src="assets/meta.jpg">
+        <article *ngIf="!isBlogActive">
+                <!-- <img src="assets/meta.jpg"> -->
+                <h1>Blogs</h1>
+                <!-- for every blog in the blog list list all links in order  -->
+                @for (blogEntry of BlogEntries; track blogEntry) {
+                        <div [routerLink]="['/blog', blogEntry.title]">
+                                <h3>{{blogEntry.title}}</h3>
+                                <app-latex-paragraph [inputString]="blogEntry.blurb"></app-latex-paragraph>
+                        </div>
+                }
         </article>
+        <router-outlet *ngIf="isBlogActive"></router-outlet>
 </div>

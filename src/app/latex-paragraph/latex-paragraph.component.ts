@@ -1,7 +1,7 @@
-import {Component, Input} from '@angular/core';
-import {LatexService} from "../service/latex.service";
-import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
-import { extractMath } from 'extract-math'
+import { Component, Input } from '@angular/core';
+import { LatexService } from "../service/latex.service";
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
+import { extractMath } from 'extract-math';
 
 @Component({
   selector: 'app-latex-paragraph',
