@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LatexParagraphComponent } from './latex-paragraph/latex-paragraph.component';
+import { MarkdownComponent } from 'ngx-markdown';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ import { LatexParagraphComponent } from './latex-paragraph/latex-paragraph.compo
     CommonModule,
     RouterOutlet,
     NavBarComponent,
-    LatexParagraphComponent
+    LatexParagraphComponent,
+    MarkdownComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
