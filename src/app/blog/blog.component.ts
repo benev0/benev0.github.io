@@ -3,6 +3,8 @@ import { RouterModule, ActivatedRoute, NavigationEnd, Router} from '@angular/rou
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
 import { LatexParagraphComponent } from '../latex-paragraph/latex-paragraph.component';
+import { BlogEntry } from '../types/blog-entry';
+import { BlogManifestService } from '../service/blog-manifest.service';
 
 @Component({
   selector: 'app-blog',
@@ -16,15 +18,11 @@ import { LatexParagraphComponent } from '../latex-paragraph/latex-paragraph.comp
   styleUrl: './blog.component.css'
 })
 export class BlogComponent implements OnInit {
-  BlogEntries = [
-    {title:"blog1", blurb:"$f(0)=0$"},
-    {title:"blog2", blurb:"$f(1)=1$"},
-    {title:"blog3", blurb:"$f(n)=f(n-2)+f(n-1)$"},
-  ]
+  BlogEntries : BlogEntry[] = []
 
   isBlogActive: boolean = false;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute, private blogManifest: BlogManifestService) {}
 
   ngOnInit(): void {
     this.router.events.pipe(
@@ -32,5 +30,18 @@ export class BlogComponent implements OnInit {
     ).subscribe(() => {
       this.isBlogActive = this.route.children.length > 0;
     });
+
+    this.isBlogActive = this.route.children.length > 0;
+
+    this.blogManifest.getManifest().then(
+      (response: BlogEntry[]) => {
+        this.BlogEntries = response;
+        console.log('Processed data', this.BlogEntries)
+      }
+    ).catch(
+      (error) => {
+        console.error('Error (cant acquire manifest):', error);
+      }
+    );
   }
 }
