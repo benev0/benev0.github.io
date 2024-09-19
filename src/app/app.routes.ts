@@ -5,9 +5,9 @@ import { NoPageComponent } from './no-page/no-page.component';
 import { BlogContentComponent } from './blog-content/blog-content.component';
 
 export const routes: Routes = [
-        { path: '', component: InfoComponent, title: 'info' },
-        { path: 'blog', component: BlogComponent, title: 'blog', children: [
+        { path: '', component: InfoComponent, title: 'info', data:{"navBar":true}},
+        { path: 'blog', component: BlogComponent, title: 'blog', data:{"navBar":true}, children: [
                 { path: ':name', component: BlogContentComponent, title: 'blog'},
         ]},
-        { path: '**', pathMatch: 'full',  component: NoPageComponent },
+        { path: '**', pathMatch: 'full',  component: NoPageComponent, data:{"navBar":false}},
 ];

@@ -3,16 +3,13 @@
         grid-auto-flow: column;
         overflow: scroll;
         justify-content: left;
-        margin-top: 10px;
-        margin-left: 25%;
-        margin-right: 25%;
-        margin-bottom: 10px;
         padding: 10px;
         border: solid;
         border-color: black;
         border-width: 2px;
+        margin: 0px;
 }
 
 .navBarCell {
-        padding-right: 20px;
+        margin-right: 20px;
 }
