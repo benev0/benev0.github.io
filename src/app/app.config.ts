@@ -1,3 +1,4 @@
+import { SecurityContext } from '@angular/core';
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideMarkdown } from 'ngx-markdown';
@@ -8,7 +9,7 @@ import { provideHttpClient } from '@angular/common/http';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideMarkdown(),
+    provideMarkdown({sanitize: SecurityContext.STYLE}),
     provideHttpClient(),
   ]
 };
