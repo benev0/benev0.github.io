@@ -1,0 +1,18 @@
+.gridContainerOver {
+        display: grid;
+        grid-auto-flow: row;
+        width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+}
+
+.gridContainerUnder {
+        display: grid;
+        grid-auto-flow: row;
+        overflow: clip;
+}
+
+.gridCell {
+        margin-top: 10px;
+        margin-bottom: 0px;
+}

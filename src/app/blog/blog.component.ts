@@ -36,7 +36,6 @@ export class BlogComponent implements OnInit {
     this.blogManifest.getManifest().then(
       (response: BlogEntry[]) => {
         this.BlogEntries = response;
-        console.log('Processed data', this.BlogEntries)
       }
     ).catch(
       (error) => {

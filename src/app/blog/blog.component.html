@@ -1,11 +1,11 @@
 <div class='blog'>
-        <article *ngIf="!isBlogActive">
+        <div class="blogList" *ngIf="!isBlogActive">
                 @for (blogEntry of BlogEntries; track blogEntry) {
-                        <div [routerLink]="['/blog', blogEntry.path]">
-                                <h1>{{blogEntry.title}}</h1>
+                        <span class="blogListCell" [routerLink]="['/blog', blogEntry.path]">
+                                <h2>{{blogEntry.title}}</h2>
                                 <app-latex-paragraph [inputString]="blogEntry.blurb"></app-latex-paragraph>
-                        </div>
+                        </span>
                 }
-        </article>
+        </div>
         <router-outlet *ngIf="isBlogActive"></router-outlet>
 </div>
