@@ -1,3 +1,5 @@
-<app-nav-bar></app-nav-bar>
-<router-outlet></router-outlet>
+<div [ngClass]="over ? 'gridContainerOver' : 'gridContainerUnder'">
+        <app-nav-bar class="gridCell"></app-nav-bar>
+        <router-outlet class="gridCell"></router-outlet>
+</div>
 <app-latex-paragraph [inputString]="'$$\\lambda f.(\\lambda x.f(xx))(\\lambda x.f(xx))$$'"></app-latex-paragraph>

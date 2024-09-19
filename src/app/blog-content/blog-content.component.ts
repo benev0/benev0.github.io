@@ -27,7 +27,6 @@ export class BlogContentComponent implements OnInit{
     this.blogManifest.getManifest().then(
       (response: BlogEntry[]) => {
         this.BlogEntries = response;
-        console.log('Processed data', this.BlogEntries)
       }
     ).catch(
       (error) => {
@@ -40,7 +39,6 @@ export class BlogContentComponent implements OnInit{
     this.blogManifest.getPage(this.name).then(
       (response: string) => {
         this.content = response;
-        console.log(this.content);
         this.isMarkdownReady = true;
     }).catch(
       (error) => {
