@@ -1,7 +1,7 @@
 .gridContainerOver {
         display: grid;
         grid-auto-flow: row;
-        width: 900px;
+        width: 920px;
         margin-left: auto;
         margin-right: auto;
 }
