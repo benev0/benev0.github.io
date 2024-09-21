@@ -39,7 +39,7 @@ export class BlogManifestService {
   private processData(rawData: any[]): BlogEntry[] {
     return rawData.map(item => ({
       title: item.title,
-      path: item.title.replace(' ', '_'),
+      path: item.title.replaceAll(' ', '_'),
       blurb: item.blurb,
       source: item.source,
     }));
