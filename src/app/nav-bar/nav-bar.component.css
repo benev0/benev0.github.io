@@ -11,5 +11,11 @@
 }
 
 .navBarCell {
+        font-size: large;
         margin-right: 20px;
+        color: black;
+}
+
+.navBarCell:hover{
+        font-weight: bolder;
 }

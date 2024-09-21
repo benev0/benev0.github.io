@@ -14,7 +14,12 @@
 .blogListCell {
         padding: 5px;
         margin: 5px;
-        border-width: 10px;
-        border-style: groove;
+        border-left: 10px solid black;
         cursor: pointer;
+        transition: 1s;
+}
+
+.blogListCell:hover {
+        border-left: 40px solid black;
+        transition: steps(3, end) 0.3s;
 }
