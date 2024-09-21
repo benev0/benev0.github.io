@@ -2,6 +2,8 @@
 <div class="navBarGrid">
 @for (route of routes; track route)
 {
-        <a [routerLink]='route.path' class='navBarCell'>{{route.title}}</a>
+        <a [routerLink]='route.path' [routerLinkActive]="'cellActive'"
+        [routerLinkActiveOptions]="route.data!['routerLinkOptions']" class='navBarCell'
+        [ngClass]="isDarkMode?'cellDark':'cellLight'">{{route.title}}</a>
 }
 </div>

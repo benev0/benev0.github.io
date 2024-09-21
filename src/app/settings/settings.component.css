@@ -1,0 +1,34 @@
+.settings {
+        justify-content: left;
+        padding: 10px;
+        border: solid;
+        border-width: 2px;
+        border-color: var(--border-color);
+        display: grid;
+        grid-auto-flow: row;
+}
+
+.settingButton {
+        all: unset;
+        font-size: 16px;
+        background: transparent;
+        border: 2px solid var(--border-color);
+        position: relative;
+        color: var(--color);
+        cursor: pointer;
+        padding: 5px 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        transition: 1s;
+}
+
+.settingButton:hover {
+        color: var(--color-alt);
+        background-color: var(--background-color-alt);
+        transition: 1s;
+}
