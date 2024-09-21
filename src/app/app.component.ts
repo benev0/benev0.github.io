@@ -34,7 +34,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         const newWidth = window.innerWidth;
         this.over = newWidth > MAX_WIDTH;
-      });
+    });
   }
 
   ngOnDestroy() {

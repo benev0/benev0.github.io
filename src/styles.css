@@ -1,8 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
-/* @import 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.0/katex.min.css'; */
+:root {
+        --background-color-light: white;
+        --color-light: black;
+
+        --background-color-dark: #151515;
+        --color-dark: white;
+
+        --background-color-light: white;
+        --color-light: black;
+
+        --background-color-dark: #151515;
+        --color-dark: white;
+
+        --border-color-light: black;
+        --border-color-dark:  rgb(128, 128, 128);
+
+}
+
+:root[data-applied-mode="light"] {
+        color-scheme: light;
+        --border-color: var(--border-color-light);
+        --border-color-alt: var(--border-color-dark);
+
+        --background-color: var(--background-color-light);
+        --color: var(--color-light);
+
+        --background-color-alt: var(--background-color-dark);
+        --color-alt: var(--color-dark);
+}
+
+:root[data-applied-mode="dark"] {
+        color-scheme: dark;
+        --border-color: var(--border-color-dark);
+        --border-color-alt: var(--border-color-light);
+
+        --background-color: var(--background-color-dark);
+        --color: var(--color-dark);
+
+        --background-color-alt: var(--background-color-light);
+        --color-alt: var(--color-light);
+}
+
 
 html, body {
         font-family: "Courier New", monospace;
         margin: 0px;
         overflow-x: clip;
+        background-color: var(--background-color);
+        color: var(--color);
 }

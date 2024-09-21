@@ -2,8 +2,8 @@
         justify-content: left;
         padding: 10px;
         border: solid;
-        border-color: black;
         border-width: 2px;
+        border-color: var(--border-color);
 }
 
 .blogList {
@@ -14,7 +14,14 @@
 .blogListCell {
         padding: 5px;
         margin: 5px;
-        border-width: 10px;
-        border-style: groove;
+        border-left: 10px solid;
+        border-left-color: var(--border-color);
         cursor: pointer;
+        transition: 1s;
+}
+
+.blogListCell:hover {
+        border-left: 40px solid;
+        border-left-color: var(--border-color-alt);
+        transition: steps(3, end) 0.3s;
 }
