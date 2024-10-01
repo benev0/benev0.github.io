@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BlogEntry } from '../types/blog-entry';
 import { HttpClient } from '@angular/common/http';
 import { tap, map } from 'rxjs/operators';
-import { Observable, firstValueFrom, of } from 'rxjs';
+import { firstValueFrom, of } from 'rxjs';
 
 
 @Injectable({

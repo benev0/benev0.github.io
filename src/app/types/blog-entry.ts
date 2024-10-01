@@ -1,4 +1,5 @@
-export interface BlogEntry {
+export interface BlogEntry
+{
         title: string;
         path: string;
         blurb: string;
