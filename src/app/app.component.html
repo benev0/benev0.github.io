@@ -1,5 +1,5 @@
 <div [ngClass]="over ? 'gridContainerOver' : 'gridContainerUnder'">
         <app-nav-bar class="gridCell"></app-nav-bar>
         <router-outlet class="gridCell"></router-outlet>
+        <app-latex-paragraph *ngIf="motdReady" [inputString]="DataMOTD!.message"></app-latex-paragraph>
 </div>
-<app-latex-paragraph [inputString]="'$$\\lambda f.(\\lambda x.f(xx))(\\lambda x.f(xx))$$'"></app-latex-paragraph>
