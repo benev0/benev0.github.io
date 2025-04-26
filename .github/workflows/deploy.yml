@@ -1,13 +1,13 @@
-name: build & deploy
+name: deploy
 
 on:
   push:
     branches:
       - main
-    paths:
-      - 'src/**'
-      - '.github/workflows/**'
-  workflow_dispatch: {}
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -19,18 +19,23 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  setup:
-    uses: ./.github/workflows/setup.yml
-
   build:
-    needs: setup
-
     permissions:
       pages: write
       id-token: write
 
     runs-on: ubuntu-latest
     steps:
+      - name: checkout src
+        uses: actions/checkout@v4
+
+      - name: setup beam
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: "27.1.2"
+          gleam-version: "1.10.0"
+          rebar3-version: "3"
+
       - name: build pages
         run: gleam run -m build
 
