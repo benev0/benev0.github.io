@@ -6,7 +6,7 @@ import lustre/ssg
 
 pub fn main() {
   let build =
-    ssg.new("./priv")
+    ssg.new("./pages")
     |> ssg.add_static_route("/", view())
     |> ssg.build
 
