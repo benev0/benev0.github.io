@@ -7,6 +7,16 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -29,16 +39,30 @@ jobs:
       - name: build pages
         run: gleam run -m build
 
+      - name: setup pages
+        id: pages
+        uses: actions/configure-pages@v5
+        with:
+          path: ./priv
+
+      - name: upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './pages'
+
   deploy:
     needs: build
 
-    # redundant but keep regardless
     permissions:
       pages: write
       id-token: write
 
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
     steps:
       - name: deploy pages
-        id: deploy
+        id: deployment
         uses: actions/deploy-pages@v4
