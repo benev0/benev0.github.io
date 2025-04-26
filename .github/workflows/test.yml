@@ -3,9 +3,21 @@ name: test
 on:
   push:
     branches:
-      - master
       - main
+    paths:
+      - '*.toml'
+      - 'src/**'
+      - 'test/**'
+      - '.github/workflows.test.yml'
   pull_request:
+    branches:
+      - main
+    paths:
+      - '*.toml'
+      - 'src/**'
+      - 'test/**'
+      - '.github/workflows.test.yml'
+  workflow_dispatch:
 
 jobs:
   test:
