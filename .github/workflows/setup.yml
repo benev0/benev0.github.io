@@ -1,0 +1,27 @@
+name: setup
+
+on:
+  workflow_call:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      beam-version: ${{ steps.set-versions.outputs.beam-version }}
+      gleam-version: ${{ steps.set-versions.outputs.gleam-version }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: set versions
+        id: set-versions
+        run: |
+          echo "beam-version=27.1.2" >> $GITHUB_OUTPUT
+          echo "gleam-version=1.10.0" >> $GITHUB_OUTPUT
+
+      - name: setup Beam
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: ${{ steps.set-versions.outputs.beam-version }}
+          gleam-version: ${{ steps.set-versions.outputs.gleam-version }}
+          rebar3-version: "3"
