@@ -22,10 +22,6 @@ concurrency:
 
 jobs:
   deploy:
-    permissions:
-      pages: write
-      id-token: write
-
     runs-on: ubuntu-latest
     steps:
       - name: checkout src
@@ -44,8 +40,6 @@ jobs:
       - name: setup pages
         id: pages
         uses: actions/configure-pages@v5
-        with:
-          path: ./pages
 
       - name: upload artifact
         uses: actions/upload-pages-artifact@v3
