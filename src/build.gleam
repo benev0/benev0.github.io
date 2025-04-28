@@ -1,4 +1,4 @@
-import blog/content/posts
+import blog/posts
 import gleam/dict
 import gleam/io
 import gleam/list

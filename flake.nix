@@ -20,6 +20,7 @@
             pkgs.elixir
             pkgs.glas
             pkgs.vscode-extensions.gleam.gleam
+            pkgs.inotify-tools
           ];
 
           shellHook = ''
