@@ -1,11 +1,16 @@
 import filespy
 import gleam/erlang/process
+import gleam/http/request.{Request}
 import gleam/io
 import gleam/string
 import mist
 import shellout
-import wisp.{type Request, type Response}
+import wisp
 import wisp/wisp_mist
+
+const rebuild_delay = 500
+
+const relative_folder_location = "/pages"
 
 pub fn main() -> Nil {
   let subj = process.new_subject()
@@ -19,11 +24,11 @@ pub fn main() -> Nil {
     |> filespy.set_handler(fn(_path, _event) { process.send(subj, Nil) })
     |> filespy.start()
 
-  // start web server (todo)
+  // start web server
   let assert Ok(dir) = shellout.command("pwd", [], ".", [])
-  let dir = string.drop_end(dir, 1) <> "/pages"
+  let dir = string.drop_end(dir, 1) <> relative_folder_location
   let assert Ok(_) =
-    wisp_mist.handler(handle_request(_, dir), "100")
+    wisp_mist.handler(handle_request(_, dir), wisp.random_string(10))
     |> mist.new
     |> mist.port(4200)
     |> mist.start_http
@@ -41,15 +46,24 @@ pub fn main() -> Nil {
   Nil
 }
 
-pub fn handle_request(request: Request, dir: String) -> Response {
-  use <- wisp.log_request(request)
-  use <- wisp.serve_static(request, under: "", from: dir)
-  wisp.ok()
+pub fn handle_request(req: wisp.Request, dir: String) -> wisp.Response {
+  use <- wisp.log_request(req)
+  use <- wisp.serve_static(req, under: "", from: dir)
+
+  let p = req.path <> ".html"
+  let r = Request(..req, path: p)
+  use <- wisp.serve_static(r, under: "", from: dir)
+
+  let p = req.path <> "/index.html"
+  let r = Request(..req, path: p)
+  use <- wisp.serve_static(r, under: "", from: dir)
+
+  wisp.not_found()
 }
 
 fn run_forever(subject, function) {
   process.receive_forever(subject)
-  process.sleep(500)
+  process.sleep(rebuild_delay)
   process.flush_messages()
   function()
   run_forever(subject, function)
