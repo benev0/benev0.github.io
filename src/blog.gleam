@@ -35,14 +35,18 @@ pub fn main() -> Nil {
 
   // rebuild on notify
   use <- run_forever(subj)
-  let _ =
+  let build =
     shellout.command(
       run: "gleam",
       with: ["run", "-m", "build"],
       in: ".",
       opt: [],
     )
-  io.print("site built\n")
+  let message = case build {
+    Ok(message) -> message
+    Error(#(_, message)) -> message
+  }
+  io.print(message)
   Nil
 }
 

@@ -2,8 +2,6 @@ import blog/posts
 import gleam/dict
 import gleam/io
 import gleam/list
-
-// import gleam/regexp
 import gleam/result
 import lustre/attribute
 import lustre/element/html.{a, div, p, text}
@@ -12,8 +10,6 @@ import lustre/ssg/djot
 import tom
 
 pub fn main() {
-  // let assert Ok(re) = regexp.from_string("[/]")
-
   let assert Ok(blogs) = posts.crawl_directory("./content/blogs")
 
   let blog_dict =
@@ -32,6 +28,7 @@ pub fn main() {
     |> ssg.add_static_route("/", render_md_path("./content/index.md"))
     |> ssg.add_static_route("/blogs", render_links("blogs", blogs))
     |> ssg.add_dynamic_route("/blogs", blog_dict, render_md)
+    |> ssg.add_static_dir("./content/")
     |> ssg.build
 
   case build {
