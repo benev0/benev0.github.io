@@ -1,15 +1,28 @@
 import blog/posts
+import blog/render
 import gleam/dict
 import gleam/io
 import gleam/list
 import gleam/result
-import lustre/attribute
-import lustre/element/html.{a, div, p, text}
 import lustre/ssg
 import lustre/ssg/djot
+import simplifile
 import tom
 
 pub fn main() {
+  // build
+  use _ <- result.try(build())
+
+  // post build
+  post_build()
+}
+
+pub type ConstructError {
+  BuildError(ssg.BuildError)
+  FileError(simplifile.FileError)
+}
+
+fn build() -> Result(_, _) {
   let assert Ok(blogs) = posts.crawl_directory("./content/blogs")
 
   let blog_dict =
@@ -25,10 +38,9 @@ pub fn main() {
 
   let build =
     ssg.new("./pages")
-    |> ssg.add_static_route("/", render_md_path("./content/index.md"))
-    |> ssg.add_static_route("/blogs", render_links("blogs", blogs))
-    |> ssg.add_dynamic_route("/blogs", blog_dict, render_md)
-    |> ssg.add_static_dir("./content/")
+    |> ssg.add_static_route("/", render.render_md_path("./content/index.md"))
+    |> ssg.add_static_route("/blogs", render.render_links("blogs", blogs))
+    |> ssg.add_dynamic_route("/blogs", blog_dict, render.render_md)
     |> ssg.build
 
   case build {
@@ -38,37 +50,21 @@ pub fn main() {
       io.println("Build failed!")
     }
   }
+
+  build |> result.map_error(BuildError)
 }
 
-fn render_md_path(path: String) {
-  let assert Ok(posts.FileSource(_, md)) = posts.from_file(path)
+fn post_build() -> Result(_, _) {
+  let post_build =
+    simplifile.copy_directory("./content/assets", "./pages/assets")
 
-  djot.render(md, djot.default_renderer())
-  |> div([], _)
-}
-
-fn render_md(md: String) {
-  djot.render(md, djot.default_renderer())
-  |> div([], _)
-}
-
-fn render_matter(base: String, matter: #(String, String)) {
-  div([], [
-    p([], [text(matter.0)]),
-    p([], [a([attribute.href(base <> "/" <> matter.1)], [text(matter.1)])]),
-  ])
-}
-
-fn render_links(base: String, sources: List(posts.PostSource)) {
-  let matters = {
-    use post <- list.map(sources)
-    use matter <- result.try(djot.metadata(post.data))
-    let assert Ok(tom.String(title)) = dict.get(matter, "title")
-    let assert Ok(tom.String(url)) = dict.get(matter, "url")
-    Ok(#(title, url))
+  case post_build {
+    Ok(_) -> io.println("Post Build succeeded!")
+    Error(e) -> {
+      echo e
+      io.println("Build failed!")
+    }
   }
 
-  let assert Ok(matters) = result.all(matters)
-
-  div([], list.map(matters, render_matter(base, _)))
+  post_build |> result.map_error(FileError)
 }
