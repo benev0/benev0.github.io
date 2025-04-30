@@ -10,10 +10,7 @@ import simplifile
 import tom
 
 pub fn main() {
-  // build
   use _ <- result.try(build())
-
-  // post build
   post_build()
 }
 
@@ -22,7 +19,7 @@ pub type ConstructError {
   FileError(simplifile.FileError)
 }
 
-fn build() -> Result(_, _) {
+fn build() -> Result(Nil, ConstructError) {
   let assert Ok(blogs) = posts.crawl_directory("./content/blogs")
 
   let blog_dict =
@@ -54,9 +51,12 @@ fn build() -> Result(_, _) {
   build |> result.map_error(BuildError)
 }
 
-fn post_build() -> Result(_, _) {
+fn post_build() -> Result(Nil, ConstructError) {
+  // let post_build =
+  //   simplifile.copy_directory("./content/assets", "./pages/assets")
+
   let post_build =
-    simplifile.copy_directory("./content/assets", "./pages/assets")
+    simplifile.create_symlink("../../content/assets", "./pages/assets")
 
   case post_build {
     Ok(_) -> io.println("Post Build succeeded!")
