@@ -10,9 +10,7 @@ import wisp/wisp_mist
 
 const rebuild_delay = 500
 
-const relative_build_location = "/pages"
-
-const relative_asset_location = "/content/assets"
+const relative_folder_location = "/pages"
 
 pub fn main() -> Nil {
   let subj = process.new_subject()
@@ -28,14 +26,9 @@ pub fn main() -> Nil {
 
   // start web server
   let assert Ok(dir) = shellout.command("pwd", [], ".", [])
-  let build_dir = string.drop_end(dir, 1) <> relative_build_location
-  let asset_dir = string.drop_end(dir, 1) <> relative_asset_location
-
+  let dir = string.drop_end(dir, 1) <> relative_folder_location
   let assert Ok(_) =
-    wisp_mist.handler(
-      handle_request(_, build_dir, asset_dir),
-      wisp.random_string(10),
-    )
+    wisp_mist.handler(handle_request(_, dir), wisp.random_string(10))
     |> mist.new
     |> mist.port(4200)
     |> mist.start_http
@@ -57,11 +50,7 @@ pub fn main() -> Nil {
   Nil
 }
 
-pub fn handle_request(
-  req: wisp.Request,
-  dir: String,
-  asset_dir: String,
-) -> wisp.Response {
+pub fn handle_request(req: wisp.Request, dir: String) -> wisp.Response {
   use <- wisp.log_request(req)
   use <- wisp.serve_static(req, under: "", from: dir)
 
@@ -72,8 +61,6 @@ pub fn handle_request(
   let p = req.path <> "/index.html"
   let r = Request(..req, path: p)
   use <- wisp.serve_static(r, under: "", from: dir)
-
-  use <- wisp.serve_static(req, under: "/assets", from: asset_dir)
 
   wisp.not_found()
 }
