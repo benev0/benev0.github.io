@@ -9,11 +9,10 @@ import lustre/ssg/djot
 import simplifile
 import tom
 
-pub fn main() {
-  // build
-  use _ <- result.try(build())
+const base_url = "/test"
 
-  // post build
+pub fn main() {
+  use _ <- result.try(build())
   post_build()
 }
 
@@ -38,9 +37,12 @@ fn build() -> Result(_, _) {
 
   let build =
     ssg.new("./pages")
-    |> ssg.add_static_route("/", render.render_md_path("./content/index.md"))
+    |> ssg.add_static_route(
+      "/",
+      render.render_md_path("./content/index.md", base_url),
+    )
     |> ssg.add_static_route("/blogs", render.render_links("blogs", blogs))
-    |> ssg.add_dynamic_route("/blogs", blog_dict, render.render_md)
+    |> ssg.add_dynamic_route("/blogs", blog_dict, render.render_md(_, base_url))
     |> ssg.build
 
   case build {
@@ -67,4 +69,8 @@ fn post_build() -> Result(_, _) {
   }
 
   post_build |> result.map_error(FileError)
+}
+
+fn get_base_url() {
+  "/pages"
 }

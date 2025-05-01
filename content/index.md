@@ -13,7 +13,7 @@ To run dev server use `gleam run`; manual refreshes are required.
 Currently under construction.
 
 ``` =html
-<img alt="lucy debug" src="assets/lucydebugfail.svg" height="100px"/>
+<img alt="lucy debug" src="/assets/lucydebugfail.svg" height="100px"/>
 ```
 
 Presently markdown files are available at their original locations. This is a bug and will be rectified.

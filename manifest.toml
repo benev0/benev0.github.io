@@ -45,6 +45,7 @@ gleam_otp = { version = ">= 0.16.1 and < 1.0.0" }
 gleam_regexp = { version = ">= 1.1.1 and < 2.0.0" }
 gleam_stdlib = { version = ">= 0.44.0 and < 2.0.0" }
 gleeunit = { version = ">= 1.0.0 and < 2.0.0" }
+jot = { version = ">= 4.0.0 and < 5.0.0" }
 lustre = { version = ">= 5.0.2 and < 6.0.0" }
 lustre_ssg = { git = "https://github.com/lustre-labs/ssg.git", ref = "v0.11.0" }
 mist = { version = ">= 4.0.7 and < 5.0.0" }
