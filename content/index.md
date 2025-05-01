@@ -18,4 +18,4 @@ Currently under construction.
 
 Presently markdown files are available at their original locations. This is a bug and will be rectified.
 
-[see blogs](/blogs)
+[see blogs](blogs)
