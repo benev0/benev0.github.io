@@ -20,7 +20,7 @@ pub fn render_md(md: String) {
 }
 
 pub fn render_matter(base: String, matter: #(String, String)) {
-  div([], [
+  div([attribute.class("blog")], [
     p([], [text(matter.0)]),
     p([], [a([attribute.href(base <> "/" <> matter.1)], [text(matter.1)])]),
   ])
