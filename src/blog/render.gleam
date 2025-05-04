@@ -3,7 +3,7 @@ import gleam/dict
 import gleam/list
 import gleam/result
 import lustre/attribute.{attribute}
-import lustre/element/html.{a, body, div, head, html, link, p, text}
+import lustre/element/html.{a, body, div, head, html, link, p, script, text}
 import lustre/ssg/djot
 import tom
 
@@ -51,6 +51,7 @@ pub fn render_links(base: String, sources: List(posts.PostSource)) {
         attribute("rel", "stylesheet"),
         attribute("href", "assets/styles.css"),
       ]),
+      script([attribute.src("assets/startup.js")], ""),
     ]),
     body([], [div([], list.map(matters, render_matter(base, _)))]),
   ])

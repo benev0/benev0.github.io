@@ -1,5 +1,34 @@
+:root[data-applied-mode="light"] {
+    color-scheme: light;
+    --base-color: var(--ctp-latte-base);
+    --text-color: var(--ctp-latte-base);
+
+    --mantle-color: var(--ctp-latte-mantle);
+    --crust-color: var(--ctp-latte-crust);
+
+}
+
+:root[data-applied-mode="dark"] {
+    color-scheme: dark;
+    --base-color: var(--ctp-mocha-base);
+    --text-color: var(--ctp-mocha-text);
+
+    --mantle-color: var(--ctp-mocha-mantle);
+    --crust-color: var(--ctp-mocha-crust);
+}
+
+html, body {
+    font-family: "Courier New", monospace;
+    margin: 0px;
+    overflow-x: clip;
+    background-color: var(--base-color);
+}
+
 .blog {
-    border-color: black;
+    border-color: var(--mantle-color);
+    background-color: var(--crust-color);
+
+    color: inherit;
     border-radius: 2px;
     border-width: 2px;
     border-style: solid;
