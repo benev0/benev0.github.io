@@ -5,21 +5,45 @@ import gleam/result
 import lustre/attribute.{attribute}
 import lustre/element/html.{a, body, div, head, html, link, p, script, text}
 import lustre/ssg/djot
+import lustre/vdom/vnode
 import tom
 
-pub fn render_md_path(path: String) {
+fn include_styles_and_scripts(page: List(vnode.Element(a))) -> vnode.Element(_) {
+  html([], [
+    head([], [
+      link([
+        attribute("rel", "stylesheet"),
+        attribute(
+          "href",
+          "https://cdn.jsdelivr.net/npm/@catppuccin/palette/css/catppuccin.css",
+        ),
+      ]),
+      link([
+        attribute("rel", "stylesheet"),
+        attribute("href", "assets/styles.css"),
+      ]),
+      script([attribute.src("assets/startup.js")], ""),
+    ]),
+    body([], page),
+  ])
+}
+
+pub fn render_md_path(path: String) -> vnode.Element(_) {
   let assert Ok(posts.FileSource(_, md)) = posts.from_file(path)
 
   djot.render(md, djot.default_renderer())
-  |> div([], _)
+  |> include_styles_and_scripts
 }
 
-pub fn render_md(md: String) {
+pub fn render_md(md: String) -> vnode.Element(_) {
   djot.render(md, djot.default_renderer())
-  |> div([], _)
+  |> include_styles_and_scripts
 }
 
-pub fn render_matter(base: String, matter: #(String, String)) {
+pub fn render_matter(
+  base: String,
+  matter: #(String, String),
+) -> vnode.Element(_) {
   div([attribute.class("blog")], [
     p([], [text(matter.0)]),
     p([], [a([attribute.href(base <> "/" <> matter.1)], [text(matter.1)])]),
@@ -37,22 +61,7 @@ pub fn render_links(base: String, sources: List(posts.PostSource)) {
 
   let assert Ok(matters) = result.all(matters)
 
-  // <link rel="stylesheet" href="mystyle.css">
-  html([], [
-    head([], [
-      link([
-        attribute("rel", "stylesheet"),
-        attribute(
-          "href",
-          "https://cdn.jsdelivr.net/npm/@catppuccin/palette/css/catppuccin.css",
-        ),
-      ]),
-      link([
-        attribute("rel", "stylesheet"),
-        attribute("href", "assets/styles.css"),
-      ]),
-      script([attribute.src("assets/startup.js")], ""),
-    ]),
-    body([], [div([], list.map(matters, render_matter(base, _)))]),
-  ])
+  matters
+  |> list.map(render_matter(base, _))
+  |> include_styles_and_scripts
 }
