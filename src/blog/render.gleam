@@ -24,7 +24,9 @@ fn include_styles_and_scripts(page: List(vnode.Element(a))) -> vnode.Element(_) 
       ]),
       script([attribute.src("assets/startup.js")], ""),
     ]),
-    body([], page),
+    body([attribute.class("gridContainerDesktop")], [
+      div([attribute.class("gridCell")], page),
+    ]),
   ])
 }
 
@@ -44,7 +46,7 @@ pub fn render_matter(
   base: String,
   matter: #(String, String),
 ) -> vnode.Element(_) {
-  div([attribute.class("blog")], [
+  div([attribute.class("blog-link")], [
     p([], [text(matter.0)]),
     p([], [a([attribute.href(base <> "/" <> matter.1)], [text(matter.1)])]),
   ])
@@ -61,7 +63,10 @@ pub fn render_links(base: String, sources: List(posts.PostSource)) {
 
   let assert Ok(matters) = result.all(matters)
 
-  matters
-  |> list.map(render_matter(base, _))
+  let rendered_matters =
+    matters
+    |> list.map(render_matter(base, _))
+
+  [html.h1([], [text("Blogs")]), ..rendered_matters]
   |> include_styles_and_scripts
 }

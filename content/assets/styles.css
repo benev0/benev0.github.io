@@ -24,7 +24,7 @@ html, body {
     background-color: var(--base-color);
 }
 
-.blog {
+.blog-link {
     border-color: var(--mantle-color);
     background-color: var(--crust-color);
 
@@ -34,4 +34,25 @@ html, body {
     border-style: solid;
     margin-top: 2px;
     padding-left: 10px;
+}
+
+.gridContainerDesktop {
+    display: grid;
+    grid-auto-flow: row;
+    width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gridContainerMobile {
+    display: grid;
+    grid-auto-flow: row;
+    overflow: clip;
+}
+
+.gridCell {
+    background-color: var(--ctp-mocha-mantle);
+    padding-left: 2vh;
+    padding-right: 2vh;
+    height: 100vh;
 }
