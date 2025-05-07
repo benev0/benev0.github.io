@@ -8,38 +8,40 @@ import lustre/ssg/djot
 import lustre/vdom/vnode
 import tom
 
-fn include_styles_and_scripts(page: List(vnode.Element(a))) -> vnode.Element(_) {
+fn include_styles_and_scripts(
+  page: List(vnode.Element(a)),
+  asset_path: String,
+) -> vnode.Element(_) {
   html([], [
     head([], [
       link([
-        attribute("rel", "stylesheet"),
-        attribute(
-          "href",
+        attribute.rel("stylesheet"),
+        attribute.href(
           "https://cdn.jsdelivr.net/npm/@catppuccin/palette/css/catppuccin.css",
         ),
       ]),
       link([
-        attribute("rel", "stylesheet"),
-        attribute("href", "assets/styles.css"),
+        attribute.rel("stylesheet"),
+        attribute.href(asset_path <> "styles.css"),
       ]),
-      script([attribute.src("assets/startup.js")], ""),
+      script([attribute.src(asset_path <> "startup.js")], ""),
     ]),
-    body([attribute.class("gridContainerDesktop")], [
-      div([attribute.class("gridCell")], page),
+    body([attribute.class("grid-container")], [
+      div([attribute.class("grid-cell")], page),
     ]),
   ])
 }
 
-pub fn render_md_path(path: String) -> vnode.Element(_) {
+pub fn render_md_path(path: String, asset_path: String) -> vnode.Element(_) {
   let assert Ok(posts.FileSource(_, md)) = posts.from_file(path)
 
   djot.render(md, djot.default_renderer())
-  |> include_styles_and_scripts
+  |> include_styles_and_scripts(asset_path)
 }
 
-pub fn render_md(md: String) -> vnode.Element(_) {
+pub fn render_md(md: String, asset_path: String) -> vnode.Element(_) {
   djot.render(md, djot.default_renderer())
-  |> include_styles_and_scripts
+  |> include_styles_and_scripts(asset_path)
 }
 
 pub fn render_matter(
@@ -68,5 +70,5 @@ pub fn render_links(base: String, sources: List(posts.PostSource)) {
     |> list.map(render_matter(base, _))
 
   [html.h1([], [text("Blogs")]), ..rendered_matters]
-  |> include_styles_and_scripts
+  |> include_styles_and_scripts("assets/")
 }

@@ -36,22 +36,32 @@ html, body {
     padding-left: 10px;
 }
 
-.gridContainerDesktop {
-    display: grid;
-    grid-auto-flow: row;
-    width: 920px;
-    margin-left: auto;
-    margin-right: auto;
+@media only screen and (max-width: 920px) {
+    .grid-container {
+        display: grid;
+        grid-auto-flow: row;
+        overflow: clip;
+        background-color: var(--ctp-mocha-mantle);
+    }
 }
 
-.gridContainerMobile {
-    display: grid;
-    grid-auto-flow: row;
-    overflow: clip;
+@media only screen and (min-width: 920px) {
+    .grid-container {
+        display: grid;
+        grid-auto-flow: row;
+        width: 920px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 2vw;
+        padding-right: 2vw;
+        height: 100vh;
+        background-color: var(--ctp-mocha-mantle);
+    }
 }
+
 
 .gridCell {
-    background-color: var(--ctp-mocha-mantle);
+
     padding-left: 2vh;
     padding-right: 2vh;
     height: 100vh;
