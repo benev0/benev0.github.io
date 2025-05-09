@@ -2,11 +2,13 @@ import blog/posts
 import gleam/dict
 import gleam/list
 import gleam/result
-import lustre/attribute.{attribute}
+import lustre/attribute
 import lustre/element/html.{a, body, div, head, html, link, p, script, text}
 import lustre/ssg/djot
 import lustre/vdom/vnode
 import tom
+
+const catppuccin_styles_url = "https://cdn.jsdelivr.net/npm/@catppuccin/palette/css/catppuccin.css"
 
 fn include_styles_and_scripts(
   page: List(vnode.Element(a)),
@@ -14,12 +16,7 @@ fn include_styles_and_scripts(
 ) -> vnode.Element(_) {
   html([], [
     head([], [
-      link([
-        attribute.rel("stylesheet"),
-        attribute.href(
-          "https://cdn.jsdelivr.net/npm/@catppuccin/palette/css/catppuccin.css",
-        ),
-      ]),
+      link([attribute.rel("stylesheet"), attribute.href(catppuccin_styles_url)]),
       link([
         attribute.rel("stylesheet"),
         attribute.href(asset_path <> "styles.css"),
