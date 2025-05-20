@@ -1,9 +1,9 @@
-let storageResult = localStorage.getItem('DarkModePreferred');
-var preferDark  = JSON.parse(storageResult ? storageResult : 'null');
-if (preferDark === null) {
-  preferDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+let colorTheme = localStorage.getItem('color-theme');
+
+if (colorTheme === null) {
+  document.documentElement.dataset.appliedMode = "default"
 }
-if (preferDark === null) {
-  preferDark = false;
+else {
+  document.documentElement.dataset.appliedMode = "set"
+  document.documentElement.dataset.theme = preferDark;
 }
-document.documentElement.dataset.appliedMode = preferDark ? 'dark' : 'light';
