@@ -10,19 +10,49 @@ import tom
 
 const catppuccin_styles_url = "https://cdn.jsdelivr.net/npm/@catppuccin/palette/css/catppuccin.css"
 
+const catppuccin_styles_checksum = "sha512-rostBe3y8SV6rNeApitsio4hw7OxN4yIdzrVdtbad5zUkoYk3+EicAFjt2zHsHC0LvxTuTFdRFWTbwokYPbDMg=="
+
+const mathjax_url = "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js"
+
+const mathjax_checksum = "sha512-NeVoktJi40j3sJ3ynBJtnDopGJhgZlWPH98HrsbZKIYPF58A//qjH0thBNZ0qHtEAuAYwcdrLRz7dlagL88xLg=="
+
 fn include_styles_and_scripts(
   page: List(vnode.Element(a)),
   asset_path: String,
+  include_math: Bool,
 ) -> vnode.Element(_) {
-  html([], [
-    head([], [
-      link([attribute.rel("stylesheet"), attribute.href(catppuccin_styles_url)]),
-      link([
-        attribute.rel("stylesheet"),
-        attribute.href(asset_path <> "styles.css"),
-      ]),
-      script([attribute.src(asset_path <> "startup.js")], ""),
+  let head_content = [
+    link([
+      attribute.rel("stylesheet"),
+      attribute.href(catppuccin_styles_url),
+      attribute.attribute("integrity", catppuccin_styles_checksum),
+      attribute.crossorigin("anonymous"),
     ]),
+    link([
+      attribute.rel("stylesheet"),
+      attribute.href(asset_path <> "styles.css"),
+    ]),
+    script([attribute.src(asset_path <> "startup.js")], ""),
+  ]
+
+  let head_content = case include_math {
+    True -> [
+      script(
+        [
+          attribute.src(mathjax_url),
+          attribute.type_("text/javascript"),
+          attribute.attribute("integrity", mathjax_checksum),
+          attribute.crossorigin("anonymous"),
+        ],
+        "",
+      ),
+      ..head_content
+    ]
+    False -> head_content
+  }
+
+  html([], [
+    head([], head_content),
     body([attribute.class("grid-container")], [
       div([attribute.class("grid-cell")], page),
     ]),
@@ -33,12 +63,26 @@ pub fn render_md_path(path: String, asset_path: String) -> vnode.Element(_) {
   let assert Ok(posts.FileSource(_, md)) = posts.from_file(path)
 
   djot.render(md, djot.default_renderer())
-  |> include_styles_and_scripts(asset_path)
+  |> include_styles_and_scripts(asset_path, False)
 }
 
 pub fn render_md(md: String, asset_path: String) -> vnode.Element(_) {
+  let math = {
+    use matter <- result.try(djot.metadata(md))
+    let toml_result = dict.get(matter, "math")
+    case toml_result {
+      Ok(tom.Bool(True)) -> Ok(True)
+      _ -> Ok(False)
+    }
+  }
+
+  let math = case math {
+    Error(_) -> False
+    Ok(math) -> math
+  }
+
   djot.render(md, djot.default_renderer())
-  |> include_styles_and_scripts(asset_path)
+  |> include_styles_and_scripts(asset_path, math)
 }
 
 pub fn render_matter(
@@ -52,6 +96,7 @@ pub fn render_matter(
 }
 
 pub fn render_links(base: String, sources: List(posts.PostSource)) {
+  // matters should be fallible (remove asserts)
   let matters = {
     use post <- list.map(sources)
     use matter <- result.try(djot.metadata(post.data))
@@ -67,5 +112,5 @@ pub fn render_links(base: String, sources: List(posts.PostSource)) {
     |> list.map(render_matter(base, _))
 
   [html.h1([], [text("Blogs")]), ..rendered_matters]
-  |> include_styles_and_scripts("assets/")
+  |> include_styles_and_scripts("assets/", False)
 }

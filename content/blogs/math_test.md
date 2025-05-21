@@ -1,6 +1,7 @@
 ---
 title = "Test of Math Rendering"
 url = "math_test"
+math = true
 ---
 
 # Math
