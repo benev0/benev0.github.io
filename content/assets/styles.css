@@ -1,5 +1,6 @@
 :root {
-    --content-width: 56em
+    --content-width: 960px;
+    font-size: 20px;
 }
 
 :root[data-applied-mode="system"], :root[data-applied-mode="default"], :root {
@@ -62,8 +63,8 @@ html, body {
     padding: 0.25em 1.25em;
 }
 
-/* sync media query with content-width */
-@media only screen and (max-width: 56em) {
+/* sync media query with content-width (mobile) */
+@media only screen and (max-width: 960px) {
     .grid-container {
         display: grid;
         grid-auto-flow: row;
@@ -72,24 +73,24 @@ html, body {
     }
 }
 
-/* sync media query with content-width */
-@media only screen and (min-width: 56em) {
+/* sync media query with content-width (desktop) */
+@media only screen and (min-width: 960px) {
     .grid-container {
         display: grid;
         grid-auto-flow: row;
-        width: var(--content-width);
+        max-width: var(--content-width);
         margin-left: auto;
         margin-right: auto;
         padding-left: 2vw;
         padding-right: 2vw;
-        height: 100vh;
+        min-height: 100vh;
         background-color: var(--mantle-color);
     }
 }
 
 
 .gridCell {
-    padding-left: 2vh;
-    padding-right: 2vh;
-    height: 100vh;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    /* height: 50%; */
 }
