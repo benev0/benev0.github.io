@@ -2,6 +2,7 @@
 title = "Test of Math Rendering"
 url = "math_test"
 math = true
+published = 2025-06-19T04:07:45+00:00
 ---
 
 # Math
