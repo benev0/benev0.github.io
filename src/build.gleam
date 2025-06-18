@@ -42,8 +42,8 @@ fn build() -> Result(_, _) {
       "/",
       render.render_md_path("./content/index.md", "assets/"),
     )
-    |> ssg.add_static_route("/blogs", render.render_links("blogs", blogs))
-    |> ssg.add_dynamic_route("/blogs", blog_dict, render.render_md(
+    |> ssg.add_static_route("/blog", render.render_links("blog", blogs))
+    |> ssg.add_dynamic_route("/blog", blog_dict, render.render_md(
       _,
       "../assets/",
     ))

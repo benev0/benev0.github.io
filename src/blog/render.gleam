@@ -170,6 +170,6 @@ pub fn render_links(base: String, sources: List(posts.PostSource)) {
     |> list.sort(fn(t1, t2) { cmp_datetime(t1.2, t2.2) })
     |> list.map(render_matter(base, _))
 
-  [html.h1([], [text("Blogs")]), ..rendered_matters]
+  [html.h1([], [text("Articles")]), ..rendered_matters]
   |> include_styles_and_scripts("assets/", False)
 }
