@@ -3,8 +3,10 @@ import gleam/dict
 import gleam/list
 import gleam/order
 import gleam/result
-import lustre/attribute
-import lustre/element/html.{a, body, div, head, html, link, p, script, text}
+import lustre/attribute.{class, href}
+import lustre/element/html.{
+  a, body, button, div, head, html, link, p, script, text,
+}
 import lustre/ssg/djot
 import lustre/vdom/vnode
 import tom
@@ -52,18 +54,15 @@ fn include_styles_and_scripts(
     False -> head_content
   }
 
-  html([], [
-    head([], head_content),
-    body([attribute.class("grid-container")], [
-      div([attribute.class("grid-cell")], page),
-    ]),
-  ])
+  html([], [head([], head_content), body([class("grid-container")], page)])
 }
 
 pub fn render_md_path(path: String, asset_path: String) -> vnode.Element(_) {
   let assert Ok(posts.FileSource(_, md)) = posts.from_file(path)
 
   djot.render(md, djot.default_renderer())
+  |> fn(elements) { [div([class("page-content grid-cell")], elements)] }
+  |> include_nav_bar()
   |> include_styles_and_scripts(asset_path, False)
 }
 
@@ -83,6 +82,9 @@ pub fn render_md(md: String, asset_path: String) -> vnode.Element(_) {
   }
 
   djot.render(md, djot.default_renderer())
+  |> include_article_headline(md)
+  |> fn(elements) { [div([class("page-content grid-cell")], elements)] }
+  |> include_nav_bar()
   |> include_styles_and_scripts(asset_path, math)
 }
 
@@ -171,5 +173,35 @@ pub fn render_links(base: String, sources: List(posts.PostSource)) {
     |> list.map(render_matter(base, _))
 
   [html.h1([], [text("Articles")]), ..rendered_matters]
+  |> fn(elements) { [div([class("article-links grid-cell")], elements)] }
+  |> include_nav_bar()
   |> include_styles_and_scripts("assets/", False)
+}
+
+pub fn include_article_headline(
+  article: List(vnode.Element(_)),
+  file_content: String,
+) -> List(vnode.Element(_)) {
+  let assert Ok(matter) = {
+    use matter <- result.try(djot.metadata(file_content))
+    let title = dict.get(matter, "title")
+    let datetime = dict.get(matter, "published")
+    Ok(#(title, datetime))
+  }
+
+  case matter {
+    #(Ok(tom.String(title)), _) -> [html.h1([], [text(title)]), ..article]
+    _ -> article
+  }
+}
+
+fn render_nav_bar() -> vnode.Element(_) {
+  div([class("nav-bar grid-cell")], [
+    a([href("/")], [button([class("nav-button")], [text("Home")])]),
+    a([href("/articles")], [button([class("nav-button")], [text("Articles")])]),
+  ])
+}
+
+fn include_nav_bar(content: List(vnode.Element(_))) -> List(vnode.Element(_)) {
+  [render_nav_bar(), ..content]
 }
