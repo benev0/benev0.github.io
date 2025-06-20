@@ -81,19 +81,19 @@ html, body {
 
 .grid-cell {
     background-color: var(--mantle-color);
-    padding: 2dvh;
-    margin-left: 1dvh;
-    margin-right: 1dvh;
+    padding: 2vh;
+    margin-left: 1vh;
+    margin-right: 1vh;
 }
 
 .grid-cell.nav-bar {
-    margin-bottom: 2dvh;
+    margin-bottom: 2vh;
     /* display: grid;
     grid-auto-flow: column; */
 }
 
 .grid-cell.bottom-bar {
-    margin-top: 2dvh;
+    margin-top: 2vh;
     padding: 0;
 }
 
