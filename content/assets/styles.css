@@ -54,7 +54,7 @@ html, body {
     margin: 0px;
     overflow-x: clip;
     background-color: var(--base-color);
-    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
 }
@@ -67,7 +67,7 @@ html, body {
 }
 
 .grid-container {
-    min-height: 100vh;
+    min-height: 100dvh;
 
     /* sync media query with content-width (desktop) */
     @media only screen and (min-width: 960px) {
@@ -81,19 +81,19 @@ html, body {
 
 .grid-cell {
     background-color: var(--mantle-color);
-    padding: 2vh;
-    margin-left: 1vh;
-    margin-right: 1vh;
+    padding: 2dvh;
+    margin-left: 1dvh;
+    margin-right: 1dvh;
 }
 
 .grid-cell.nav-bar {
-    margin-bottom: 2vh;
+    margin-bottom: 2dvh;
     /* display: grid;
     grid-auto-flow: column; */
 }
 
 .grid-cell.bottom-bar {
-    margin-top: 2vh;
+    margin-top: 2dvh;
     padding: 0;
 }
 
