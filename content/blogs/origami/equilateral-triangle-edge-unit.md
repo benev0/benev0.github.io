@@ -33,7 +33,7 @@ Before you plan to tessellate the plane or build a tetrahedron. There are some l
 
 ## Chirality
 
-This unit is chiral. This means that "right" and "left" units are self compatible only. All Instructions are given for "left" units. The name "left" has been selected for the direction that the paper opens in [step 3](#step-3). Another suitable naming scheme would be clockwise for the behavior of the paper in [step 3](#step-3) and [step 4](#step-4).
+This unit is chiral. This means that "right" and "left" units are self compatible only. All Instructions are given for "left" units. The name "left" has been selected for the direction that the paper opens in [step 3](#Step-3). Another suitable naming scheme would be clockwise for the behavior of the paper in [step 3](#Step-3) and [step 4](#Step-4).
 
 ## Folding the Unit
 
