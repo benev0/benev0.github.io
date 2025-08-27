@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="36.28714mm"
+   height="18.981182mm"
+   viewBox="0 0 36.28714 18.981183"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   sodipodi:docname="step7.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.71268238"
+     inkscape:cx="14.031496"
+     inkscape:cy="158.55591"
+     inkscape:window-width="1292"
+     inkscape:window-height="991"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-101.33541,-106.62708)">
+    <g
+       id="g22"
+       inkscape:label="step7"
+       transform="translate(36.530644,-2.6564969)">
+      <path
+         id="path19-0-6-2-5-4"
+         style="fill:#cccccc;stroke:#000000;stroke-width:0.1;stroke-dasharray:none"
+         d="m 100.90736,112.82271 -26.277826,15.38431 -9.756567,-5.55934 5.588256,-9.80731 z"
+         inkscape:label="back under" />
+      <path
+         style="fill:none;stroke:#b3b3b3;stroke-width:0.263;stroke-dasharray:none;stroke-dashoffset:0"
+         d="m 71.44544,126.10926 6.239898,0.011"
+         id="path4-9-9-5-3-5-20-9-0-5-3"
+         inkscape:label="crease" />
+      <path
+         style="fill:none;stroke:#b3b3b3;stroke-width:0.263;stroke-dasharray:none;stroke-dashoffset:0"
+         d="m 78.499956,125.54861 6.996565,-12.30162"
+         id="path4-9-9-5-63-4-4-0"
+         inkscape:label="crease w peak" />
+      <path
+         id="path18"
+         style="fill:#cccccc;stroke:#000000;stroke-width:0.1;stroke-dasharray:none"
+         d="m 100.997,112.81609 0.0136,0.36424 -6.614269,11.17821 -0.09597,0.0434 -6.578694,-3.83902 0.0564,-11.22909 11.287425,0.0568 z"
+         inkscape:label="Back" />
+      <path
+         style="fill:none;stroke:#b3b3b3;stroke-width:0.263;stroke-dasharray:none;stroke-dashoffset:0"
+         d="m 90.685287,121.92911 -2.699164,-5.62593"
+         id="path4-9-9-5-3-5-20-9-0-5-3-8"
+         inkscape:label="crease back" />
+    </g>
+  </g>
+</svg>

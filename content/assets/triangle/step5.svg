@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="58.862476mm"
+   height="46.172642mm"
+   viewBox="0 0 58.862477 46.172643"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   sodipodi:docname="step5.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.71268238"
+     inkscape:cx="-113.65512"
+     inkscape:cy="211.87559"
+     inkscape:window-width="1292"
+     inkscape:window-height="991"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="DartArrow-0"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path7-2" />
+    </marker>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter7"
+       x="-0.029811726"
+       y="-0.19888003"
+       width="1.1031828"
+       height="1.4000232">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.36802369"
+         id="feGaussianBlur7" />
+    </filter>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-2"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path7-0" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-135.20208,-92.339582)">
+    <g
+       id="g16"
+       inkscape:label="step5"
+       transform="translate(95.799512,56.522383)">
+      <path
+         style="fill:none;stroke:#ffffff;stroke-width:0.263;stroke-dasharray:none;marker-end:url(#DartArrow-0);filter:url(#filter7)"
+         d="m 52.18563,72.541188 c 11.802874,6.615064 20.939222,6.521934 31.784425,0.709605"
+         id="path13"
+         sodipodi:nodetypes="cc"
+         inkscape:label="arrow glow" />
+      <g
+         id="g6"
+         inkscape:label="pre - flip"
+         transform="translate(-2.2073137,-5.4387965)">
+        <rect
+           style="fill:#cccccc;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.102143;stroke-dasharray:none;stroke-dashoffset:0;paint-order:fill markers stroke"
+           id="rect31"
+           width="26.35619"
+           height="26.35619"
+           x="41.660954"
+           y="51.135876" />
+        <path
+           style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#999999;stroke-width:0.27498;stroke-dasharray:none;stroke-dashoffset:0;paint-order:fill markers stroke"
+           d="M 54.789043,53.575353 V 76.994947"
+           id="path31" />
+        <path
+           id="path19-2"
+           style="fill:#ffffff;stroke:#000000;stroke-width:0.1;stroke-dasharray:none"
+           d="m 68.018098,77.358585 -15.384305,-26.277826 5.55934,-9.756567 9.807305,5.588256 z" />
+        <path
+           style="fill:none;stroke:#b3b3b3;stroke-width:0.263;stroke-dasharray:none;stroke-dashoffset:0"
+           d="m 55.430603,54.982907 12.301625,6.996565"
+           id="path4-9-9-5-6" />
+        <path
+           style="fill:none;stroke:#cccccc;stroke-width:0.263;stroke-dasharray:none"
+           d="m 66.941168,46.891276 0.63488,1.112573"
+           id="path1" />
+      </g>
+      <g
+         id="g8"
+         transform="translate(17.467943,-47.91379)"
+         inkscape:label="filp">
+        <g
+           id="g5"
+           transform="matrix(1,0,0,-1,-31.797139,179.90988)"
+           inkscape:label="under">
+          <path
+             id="path19-0"
+             style="fill:#ffffff;stroke:#000000;stroke-width:0.1;stroke-dasharray:none"
+             d="M 107.33399,66.815783 92.118899,40.439615 H 80.88961 v 11.287684 z"
+             transform="matrix(-0.4950755,0.86884997,0.86884997,0.4950755,107.62967,-40.227151)" />
+          <path
+             style="fill:none;stroke:#b3b3b3;stroke-width:0.263;stroke-dasharray:none;stroke-dashoffset:0"
+             d="m 99.257763,56.652837 -0.0114,2.759901"
+             id="path4-9-9-5-3-5-20" />
+          <path
+             id="path20-9-1-6"
+             style="fill:#cccccc;stroke:#000000;stroke-width:0.1;stroke-dasharray:none;paint-order:fill markers stroke"
+             d="m 112.52041,59.674984 -0.1507,0.287896 -11.26385,6.405747 -1.782996,-3.168034 13.220866,-7.440552 z"
+             inkscape:label="center" />
+        </g>
+        <g
+           id="g7"
+           transform="translate(-36.240532,1.9583055)"
+           inkscape:label="over">
+          <rect
+             style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.102143;stroke-dasharray:none;stroke-dashoffset:0;paint-order:fill markers stroke"
+             id="rect31-0"
+             width="26.35619"
+             height="26.35619"
+             x="90.567078"
+             y="91.773483"
+             inkscape:label="back" />
+          <path
+             style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#b3b3b3;stroke-width:0.285152;stroke-dasharray:none;stroke-dashoffset:0;paint-order:fill markers stroke"
+             d="M 103.69517,92.448304 V 117.63255"
+             id="path31-7"
+             inkscape:label="crease" />
+        </g>
+      </g>
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.263;stroke-dasharray:none;marker-end:url(#DartArrow-2)"
+         d="m 52.18563,72.541188 c 11.802874,6.615064 20.939222,6.521934 31.784425,0.709605"
+         id="path13-3"
+         sodipodi:nodetypes="cc"
+         inkscape:label="flip indicator" />
+    </g>
+  </g>
+</svg>
